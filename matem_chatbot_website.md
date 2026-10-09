@@ -113,7 +113,6 @@ st.write("Posez vos questions sur la société MATEM.")
 
 # 2. Configuration du modèle Groq
 # Pour ce prototype local, collez votre clé API ci-dessous.
-# Ne publiez jamais une vraie clé API sur GitHub.
 GROQ_API_KEY = "COLLER_VOTRE_CLE_GROQ_ICI"
 
 # Vérifiez que cet identifiant est disponible dans votre compte Groq.
@@ -126,15 +125,9 @@ def charger_site():
     loader = WebBaseLoader("https://matem.com.tn")
     documents = loader.load()
 
-    if not documents:
-        raise ValueError("Aucun document récupéré.")
-
     contenu = "\n".join(
         doc.page_content for doc in documents
     )
-
-    if not contenu.strip():
-        raise ValueError("Le site ne contient pas de texte exploitable.")
 
     return contenu
 
@@ -192,27 +185,24 @@ if question:
         st.markdown(question)
 
     with st.chat_message("assistant"):
-        try:
-            with st.spinner("Chargement du site et génération de la réponse..."):
-                contenu = charger_site()
-                chain = creer_chaine()
+        with st.spinner("Chargement du site et génération de la réponse..."):
+            contenu = charger_site()
+            chain = creer_chaine()
 
-                reponse = chain.invoke({
-                    "question": question,
-                    "contenu": contenu
-                })
-
-                texte = reponse.content
-
-            st.markdown(texte)
-
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": texte
+            reponse = chain.invoke({
+                "question": question,
+                "contenu": contenu
             })
 
-        except Exception as e:
-            st.error(f"Une erreur est survenue : {e}")
+            texte = reponse.content
+
+        st.markdown(texte)
+
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": texte
+        })
+
 ```
 
 ### Avant le lancement
