@@ -34,8 +34,6 @@ matem_chatbot/
 ├── requirements.txt
 ```
 
-Le fichier `README.md` correspond au présent document.
-
 ## 3. Prérequis
 
 - Python 3.10 ou une version compatible avec les versions installées de LangChain et Streamlit.
@@ -56,22 +54,16 @@ python --version
 Créez l'environnement virtuel :
 
 ```bash
-python -m venv .venv
-```
-
-### Windows — PowerShell
-
-```powershell
-.\.venv\Scripts\Activate.ps1
+python -m venv venv
 ```
 
 ### Windows — Invite de commandes (cmd)
 
 ```cmd
-.venv\Scripts\activate.bat
+venv\Scripts\activate
 ```
 
-Après activation, le préfixe `(.venv)` devrait apparaître dans le terminal.
+Après activation, le préfixe `(venv)` devrait apparaître dans le terminal.
 
 Mettez ensuite `pip` à jour :
 
