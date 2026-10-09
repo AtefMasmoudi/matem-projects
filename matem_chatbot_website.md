@@ -209,9 +209,6 @@ if question:
 
 1. Remplacez `COLLER_VOTRE_CLE_GROQ_ICI` par votre clé Groq valide.
 2. Remplacez `REMPLACER_PAR_UN_MODELE_GROQ_DISPONIBLE` par un identifiant de modèle accepté par Groq.
-3. Ne partagez pas `app.py` sur GitHub tant qu'il contient une clé API réelle.
-
-**Important :** une clé API précédemment publiée doit être révoquée, puis remplacée par une nouvelle clé. Supprimer une clé du code après l'avoir publiée ne suffit pas à la sécuriser.
 
 ## 7. Lancer l'application
 
@@ -255,56 +252,8 @@ Le décorateur `@st.cache_data(ttl=3600)` permet de réutiliser le texte extrait
 ### Limites
 
 - Seule la page d'accueil est chargée ; des informations présentes sur d'autres pages peuvent manquer.
-- Le contenu peut être incomplet si le site utilise du JavaScript ou bloque les requêtes automatisées.
 - Le modèle peut mal interpréter le contexte ou produire des informations non étayées.
-- Le prompt demande au modèle de s'appuyer sur le contexte, mais ne garantit pas l'absence d'erreurs.
 - Le texte complet de la page est envoyé au modèle, ce qui peut devenir coûteux ou dépasser sa limite de contexte si le site est volumineux.
 - Les erreurs sont affichées dans l'interface pour faciliter le débogage de ce prototype. Pour une application publique, il est préférable de journaliser les détails techniques côté serveur sans exposer d'informations sensibles aux utilisateurs.
-
-## 9. Publier le projet sur GitHub
-
-Avant de publier, assurez-vous qu'aucune clé API réelle ne figure dans les fichiers suivis par Git.
-
-Il est recommandé d'ajouter un fichier `.gitignore` contenant :
-
-```gitignore
-.venv/
-__pycache__/
-*.py[cod]
-.streamlit/secrets.toml
-.env
-```
-
-Initialisez ensuite le dépôt Git :
-
-```bash
-git init
-git add app.py requirements.txt README.md .gitignore
-git commit -m "Initial commit: MATEM Streamlit chatbot"
-```
-
-Créez un dépôt vide sur GitHub, puis suivez les instructions proposées par GitHub pour connecter le dépôt local et envoyer les fichiers. Les commandes habituelles ressemblent à ceci :
-
-```bash
-git branch -M main
-git remote add origin https://github.com/VOTRE-UTILISATEUR/matem-chatbot.git
-git push -u origin main
-```
-
-Remplacez l'URL par celle de votre propre dépôt.
-
-Si une clé a déjà été ajoutée à un commit publié, révoquez-la immédiatement. La supprimer dans un nouveau commit ne l'efface pas de l'historique Git.
-
-## 10. Évolutions possibles
-
-Pour améliorer le projet progressivement :
-
-1. Séparer l'interface et la logique LangChain dans plusieurs modules.
-2. Charger plusieurs pages pertinentes du site MATEM.
-3. Découper les documents en fragments.
-4. Ajouter des embeddings et une base vectorielle pour retrouver les passages pertinents.
-5. Afficher les sources utilisées dans chaque réponse.
-6. Transmettre l'historique conversationnel au modèle pour gérer les questions de suivi.
-7. Ajouter des tests et une gestion plus détaillée des erreurs.
 
 Cette architecture constitue une base pédagogique simple pour comprendre Streamlit, LangChain, l'extraction web et l'appel à un modèle de langage via Groq.
