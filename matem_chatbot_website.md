@@ -32,7 +32,6 @@ Créez un dossier `matem_chatbot` avec les fichiers suivants :
 matem_chatbot/
 ├── app.py
 ├── requirements.txt
-└── README.md
 ```
 
 Le fichier `README.md` correspond au présent document.
