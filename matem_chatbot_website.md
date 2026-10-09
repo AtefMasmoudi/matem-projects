@@ -249,11 +249,4 @@ Dans cette version, les messages précédents sont conservés et affichés par S
 
 Le décorateur `@st.cache_data(ttl=3600)` permet de réutiliser le texte extrait pendant une heure. Le site n'est donc pas téléchargé à chaque question, sauf si le cache expire ou est invalidé.
 
-### Limites
-
-- Seule la page d'accueil est chargée ; des informations présentes sur d'autres pages peuvent manquer.
-- Le modèle peut mal interpréter le contexte ou produire des informations non étayées.
-- Le texte complet de la page est envoyé au modèle, ce qui peut devenir coûteux ou dépasser sa limite de contexte si le site est volumineux.
-- Les erreurs sont affichées dans l'interface pour faciliter le débogage de ce prototype. Pour une application publique, il est préférable de journaliser les détails techniques côté serveur sans exposer d'informations sensibles aux utilisateurs.
-
 Cette architecture constitue une base pédagogique simple pour comprendre Streamlit, LangChain, l'extraction web et l'appel à un modèle de langage via Groq.
