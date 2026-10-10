@@ -54,7 +54,7 @@ python --version
 Créez l'environnement virtuel :
 
 ```bash
-python -m venv venv
+python -m venv appenv
 ```
 
 ### Windows — Invite de commandes (cmd)
